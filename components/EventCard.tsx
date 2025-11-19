@@ -39,4 +39,4 @@ const EventCard = ({title , image, slug, location, date ,time} : props) => {
   )
 }
 
-export default EventCard
+export default EventCard;
