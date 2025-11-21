@@ -43,6 +43,7 @@ const BookingSchema = new Schema<BookingDocument, BookingModel>(
     timestamps: true,
     strict: 'throw',
   }
+  
 );
 
 // Additional index on eventId to optimize queries that filter by event.
