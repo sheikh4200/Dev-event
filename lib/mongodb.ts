@@ -21,13 +21,7 @@ declare global {
   var mongoose: MongooseGlobalCache | undefined;
 }
 
-const MONGODB_URI = process.env.MONGODB_URI;
 
-if (!MONGODB_URI) {
-  // Fail fast if the environment variable is missing; this is a misconfiguration
-  // that should never reach runtime in production.
-  throw new Error('Please define the MONGODB_URI environment variable in your .env file');
-}
 
 /**
  * Use a global variable in development to preserve the connection across
@@ -47,6 +41,14 @@ if (!globalThis.mongoose) {
  *   await connectToDatabase();
  */
 export async function connectToDatabase(): Promise<Connection> {
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  // Fail fast if the environment variable is missing; this is a misconfiguration
+  // that should never reach runtime in production.
+  throw new Error('Please define the MONGODB_URI environment variable in your .env file');
+}
+
   // If we already have an active connection, reuse it.
   if (cached.conn) {
     return cached.conn;

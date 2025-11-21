@@ -1,10 +1,19 @@
 import EventCard from "@/components/EventCard"
 import ExploreBtn from "@/components/ExploreBtn"
-import { events } from "@/lib/constants"
+import { EventAttributes } from "@/database/event.model"
+import { NextResponse } from "next/server"
 
 
 
-const Home = () => {
+const BASE_URI = process.env.NEXT_PUBLIC_BASE_URI;
+// console.log("BASE_URI => ", BASE_URI);
+
+     const Home = async() => {
+  
+const res = await fetch(`${BASE_URI}/api/events`);
+const { event: events } = await res.json(); 
+
+
   return (
       
     <section>
@@ -17,23 +26,26 @@ const Home = () => {
   
          <ul className="events">
           {
-            events.map((event)=>(
-              <li key={event.title}>
-                < EventCard  {...event} />
-              </li>
-            ))
+           events && events.length > 0 &&  events.map((event:EventAttributes)=>(
+         
+         <li key={event.title}  >
+       <EventCard 
+         title={event.title}
+         image={event.image}     
+         slug={event.slug}
+         location={event.location}
+         date={event.date}    
+         time={event.time}     
+/>
+  </li>
+           
+ 
+           ))
           }
-          
+
          </ul>
-
-
        </div>
-
-
-
-    </section>
-     
-  )
-}
+    </section>   
+  )}
 
 export default Home
