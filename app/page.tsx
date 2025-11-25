@@ -1,17 +1,17 @@
 import EventCard from "@/components/EventCard"
 import ExploreBtn from "@/components/ExploreBtn"
 import { EventAttributes } from "@/database/event.model"
-import { NextResponse } from "next/server"
+// import { NextResponse } from "next/server"
 
 
 
 const BASE_URI = process.env.NEXT_PUBLIC_BASE_URI;
 // console.log("BASE_URI => ", BASE_URI);
 
-     const Home = async() => {
+ const Home = async() => {
   
 const res = await fetch(`${BASE_URI}/api/events`);
-const { event: events } = await res.json(); 
+const { event:events} = await res.json(); 
 
 
   return (
@@ -36,13 +36,10 @@ const { event: events } = await res.json();
          location={event.location}
          date={event.date}    
          time={event.time}     
-/>
-  </li>
-           
- 
-           ))
-          }
-
+        />
+      </li> 
+        ))
+        }
          </ul>
        </div>
     </section>   
