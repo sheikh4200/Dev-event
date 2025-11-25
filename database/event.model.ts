@@ -161,7 +161,8 @@ const EventSchema = new Schema<EventDocument, EventModel>(
 );
 
 // Explicit unique index on slug to enforce uniqueness at the database level.
-EventSchema.index({ slug: 1 }, { unique: true });
+
+// EventSchema.index({ slug: 1 }, { unique: true });
 
 /**
  * Pre-save hook to:

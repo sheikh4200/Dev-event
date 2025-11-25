@@ -46,7 +46,7 @@ const BookingSchema = new Schema<BookingDocument, BookingModel>(
 );
 
 // Additional index on eventId to optimize queries that filter by event.
-BookingSchema.index({ eventId: 1 });
+// BookingSchema.index({ eventId: 1 });
 
 /**
  * Pre-save hook to:
